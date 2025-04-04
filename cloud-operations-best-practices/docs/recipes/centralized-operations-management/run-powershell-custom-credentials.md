@@ -2,7 +2,7 @@
 
 By default, [Systems Manager Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/run-command.html) uses the local `SYSTEM` account to execute commands on Windows managed nodes. However, in certain scenarios, operations engineers require custom user permissions when running these commands. For example, to execute Active Directory Domain tasks or to scope down the privileges for the command session.
 
-When handling user credentials in PowerShell, we recommend storing them in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) and retrieving them programmatically from the script. This avoids exposing the credentials on plain text at any point of the execution. The below example shows a script to retrieve Domain credentials from Secrets Manager and execute a PowerShell script with those credentials: 
+When handling user credentials in PowerShell, we recommend storing them in [AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) and retrieving them programmatically from the script. This avoids exposing the credentials in plain text at any point of the execution. The below example shows a script to retrieve Domain credentials from Secrets Manager and execute a PowerShell script with those credentials: 
 ```
 # Retrieves AWS Secrets Manager secret
 $SecretContent = Get-SECSecretValue -SecretId <SECRET_ARN> -ErrorAction Stop | Select-Object -ExpandProperty 'SecretString' | ConvertFrom-Json -ErrorAction Stop
@@ -41,7 +41,7 @@ $Session = New-PSSession -ComputerName $Env:ComputerName -Credential $Credential
 # Executes a command in the remote session to start a process and wait for completion
 Invoke-Command -Session $Session -ScriptBlock { Write-Host "Logged in as: $env:USERNAME" }
 ```
-The below the image shows the Run Command output after executing this PowerShell Script. 
+The below image shows the Run Command output after executing this PowerShell script. 
 
 ![exmaple-2-command-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-2-command-output.png)
 
@@ -53,7 +53,7 @@ The below the image shows the Run Command output after executing this PowerShell
 Find more details on creating a Secrets Manager secret [here](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html). You also need to provision the instance with permissions to access this secret, an example policy can be found [here](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_iam-policies.html#auth-and-access_examples_identity_read).  
 &nbsp;
 
-To automate the secret retrieval and credentials manipulations, you can [create](https://aws.amazon.com/blogs/mt/writing-your-own-aws-systems-manager-documents/) a custom Run Command document with the with the below content:
+To automate the secret retrieval and credentials manipulations, you can [create](https://aws.amazon.com/blogs/mt/writing-your-own-aws-systems-manager-documents/) a custom Run Command document with the below content:
 
 ```
 schemaVersion: '2.2'
