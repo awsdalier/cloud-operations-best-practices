@@ -21,7 +21,7 @@ Invoke-Command -Authentication 'CredSSP' `
 
 Output shows successful log in as the desired domain user:
 
-![exmaple-1-command-output](cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-1-command-output.png)
+![exmaple-1-command-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-1-command-output.png)
 
 Another alternative is using PS Session. The following code also uses Secrets Manager to retrieve Local Administrator credentials and execute a command under this context:
 ```
@@ -41,7 +41,7 @@ Invoke-Command -Session $Session -ScriptBlock { Write-Host "Logged in as: $env:U
 ```
 The below the image shows the Run Command output after executing this PowerShell Script. 
 
-![exmaple-2-command-output](cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-2-command-output.png)
+![exmaple-2-command-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-2-command-output.png)
 
 
  Note: the Secrets Manager secret used on these examples stores credentials in the following key/value pair format: 
@@ -87,11 +87,10 @@ mainSteps:
 ```
 As a result, you will have a template document which only requires Secret ARN and script content for every execution: 
 
-![custom-command-doc-settings](cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-settings.png)
+![custom-command-doc-settings](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-settings.png)
 
 A successfull document execution will show the following results results: 
 
-![custom-command-doc-output](cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-output.png)
-
+![custom-command-doc-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-output.png)
 
 
