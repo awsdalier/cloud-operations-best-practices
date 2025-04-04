@@ -92,7 +92,7 @@ As a result, you will have a template document which only requires Secret ARN an
 
 ![custom-command-doc-settings](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-settings.png)
 
-A successfull document execution will show the following results: 
+A successful document execution will show the following results: 
 
 ![custom-command-doc-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-output.png)
 
