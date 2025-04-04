@@ -23,6 +23,8 @@ Output shows successful log in as the desired domain user:
 
 ![exmaple-1-command-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/example-1-command-output.png)
 
+&nbsp;
+
 Another alternative is using PS Session. The following code also uses Secrets Manager to retrieve Local Administrator credentials and execute a command under this context:
 ```
 # Retrieves AWS Secrets Manager secret
@@ -49,6 +51,7 @@ The below the image shows the Run Command output after executing this PowerShell
 {"username":"XXXXXXXXX","password":"XXXXXXX"}
 ```
 Find more details on creating a Secrets Manager secret [here](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html). You also need to provision the instance with permissions to access this secret, an example policy can be found [here](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access_iam-policies.html#auth-and-access_examples_identity_read).  
+&nbsp;
 
 To automate the secret retrieval and credentials manipulations, you can [create](https://aws.amazon.com/blogs/mt/writing-your-own-aws-systems-manager-documents/) a custom Run Command document with the with the below content:
 
@@ -89,7 +92,7 @@ As a result, you will have a template document which only requires Secret ARN an
 
 ![custom-command-doc-settings](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-settings.png)
 
-A successfull document execution will show the following results results: 
+A successfull document execution will show the following results: 
 
 ![custom-command-doc-output](/cloud-operations-best-practices/static/img/recipes/run-powershell-custom-credentials/custom-command-doc-output.png)
 
